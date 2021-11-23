@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   # post '/articles' => 'articles#create', as: 'create_article'
   # get '/articles/:id/edit' => "articles#edit", as: 'edit_article' 
   # get '/articles/:id' => "articles#show", as: 'show_article'
+  root 'pages#home'
   resources :articles
+  resources :categories
+  
 end
