@@ -27,9 +27,9 @@ RSpec.describe Category, type: :model do
     end
     
     it 'updates the name' do
-        category.name = "John"
-        category.update(name: "John Updated Name")
-        expect(category.name).to eq("John Updated Name")
+        category.name = "Name"
+        category.update(name: "Sample Updated Name")
+        expect(category.name).to eq("Sample Updated Name")
     end
 end
 
