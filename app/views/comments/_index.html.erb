@@ -1,3 +1,5 @@
+
+<h1>COMMENTS</h1>
 <table>
     <thead>
         <tr>
@@ -11,6 +13,9 @@
         <tr>
             <td><%= comment.id %></td>
             <td><%= comment.body %></td>
+            <td><%= link_to "Edit", edit_article_comment_path(@article.id, comment.id)%></td>
+            <td><%= link_to "Show", article_comment_path(@article.id, comment.id)%></td>
+            <td><%= link_to "Delete", article_comment_path(@article.id, comment.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
         <tr>
         <% end %>
     <tbody>

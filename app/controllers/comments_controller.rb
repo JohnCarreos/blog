@@ -12,10 +12,34 @@ class CommentsController < ApplicationController
     def create
         @comment = @article.comments.build(comment_params)
         if @comment.save
-            redirect_to article_comments_path
+            redirect_to article_comment_path(@article.id, @comment.id)
         else
             render :new
         end
+    end
+
+    def show
+        @comment = Comment.find(params[:id])
+    end
+
+    def edit
+        @comment = Comment.find(params[:id])
+    end
+
+    def update
+        @comment = Comment.find(params[:id])
+        if @comment.update(comment_params)
+            redirect_to article_comment_path(@article.id, @comment.id)
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @comment = Comment.find(params[:id])
+        @comment.destroy
+        # redirect_to @article
+        redirect_to article_path(@article.id)
     end
 
     private
