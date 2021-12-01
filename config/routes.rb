@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   # get '/articles/:id' => "articles#show", as: 'show_article'
   root 'pages#home'
   
-  resources :categories
+  resources :categories do
+    resources :tasks
+  end
+  
   resources :articles do
     resources :comments
   end
+
 end
