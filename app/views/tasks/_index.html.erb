@@ -1,0 +1,26 @@
+
+<h1>TASKS</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Body</th>
+        <tr>
+    </thead>
+
+    <tbody>
+        <% @tasks.each do |task| %>
+        <tr>
+            <td><%= task.id %></td>
+            <td><%= task.name %></td>
+            <td><%= task.body %></td>
+            <td><%= link_to "Edit", edit_category_task_path(@category.id, task.id)%></td>
+            <td><%= link_to "Show", category_task_path(@category.id, task.id)%></td>
+            <td><%= link_to "Delete", category_task_path(@category.id, task.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
+        <tr>
+        <% end %>
+    <tbody>
+</table>
+<%= link_to 'Add Task', new_category_task_path(@category) %>
+

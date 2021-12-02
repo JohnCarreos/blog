@@ -18,9 +18,9 @@ RSpec.describe Task, type: :model do
   end
 
   it 'not valid without name' do
-    task.category_id = 1
-    task.name = nil
-    task.body = 'Body of Task'
+    Article.task.category_id = 1
+    Article.task.name = nil
+    Article.task.body = 'Body of Task'
 
     expect(task).to_not be_valid
     expect(task.errors).to be_present
