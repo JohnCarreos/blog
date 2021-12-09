@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-    before_action :get_category
+    before_action :authenticate_user!
+    before_action :get_category, except: [:tasks_today]
 
     def index
         @tasks = @category.tasks
@@ -41,6 +42,10 @@ class TasksController < ApplicationController
         redirect_to category_path(@category.id)
     end
 
+    def tasks_today
+        @tasks = Task.where(task_date: Date.today)
+    end
+
     private
 
     def get_category
@@ -48,7 +53,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:name, :body, :category_id)
+        params.require(:task).permit(:name, :body, :category_id, :task_date)
     end  
 end
 

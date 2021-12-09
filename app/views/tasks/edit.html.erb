@@ -1,3 +1,4 @@
+<h1>Edit a Task</h1>
 
 <%= form_with model: [@category, @task], local: true do |f| %>
 <p>
@@ -21,7 +22,7 @@
 
 <p>
     <%= f.label :date %><br/>
-    <%= f.text_field :date %>
+    <%= f.date_field :task_date %>
 </p>
 
 <p>

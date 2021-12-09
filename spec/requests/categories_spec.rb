@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
+  
+  before do
+    sign_in create(:user)
+  end
+
   describe "GET /categories" do
     it "returns the index page" do
       get categories_path
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:success)
     end
   end
 

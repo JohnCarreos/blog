@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # get '/articles/:id/edit' => "articles#edit", as: 'edit_article' 
   # get '/articles/:id' => "articles#show", as: 'show_article'
   root 'pages#home'
+
+  get '/categories/:category_id/tasks_today' => "tasks#tasks_today", as: 'show_tasks_today'
   
   resources :categories do
     resources :tasks
