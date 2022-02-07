@@ -20,5 +20,5 @@
         <% end %>
     <tbody>
 </table>
-<%= link_to 'Add Comment', new_article_comment_path(@article) %>
+<%= link_to 'Add Comment', new_article_comment_path(@article) if current_user%>
 <br/>

@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: %i[ show edit update destroy ]
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index, :show]
     before_action :correct_user, only: %i[ edit update destroy ]
 
     def index

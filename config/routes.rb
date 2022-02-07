@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get '/categories/:category_id/tasks_today' => "tasks#tasks_today", as: 'show_tasks_today'
-  
+  get '/profile/:id' => "pages#profile", as: 'profile_page'
   resources :categories do
     resources :tasks
   end

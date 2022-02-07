@@ -1,0 +1,33 @@
+<%= current_user.name %> 
+<%= current_user.surname %>
+<br>
+<%= current_user.email %>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Body</th>
+            <th>user</th>
+        <tr>
+    </thead>
+
+    <tbody>
+        <% current_user.articles.each do |article|%>
+        <tr>
+            <td><%= link_to article.name, article_path(article) %></td>
+            <td><%= article.body %> <%= article.id %></td>
+            <td><%= article.user.inspect %></td>
+            <td><%= link_to 'Edit', edit_article_path(article) if article.user == current_user %> </td>
+            <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} if article.user == current_user  %></td>
+
+        <tr>
+        <% end %>
+    <tbody>
+</table>
+<%= link_to 'New Article', new_article_path if current_user%>
+<%= link_to "Logout", destroy_user_session_path, method: :delete if current_user %>
+
+
+
