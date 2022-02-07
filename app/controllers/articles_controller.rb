@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
+    before_action :set_article, only: %i[ show edit update destroy ]
     before_action :authenticate_user!
+    before_action :correct_user, only: %i[ edit update destroy ]
+
     def index
         @articles = Article.all
+        @user = current_user
     end
 
     def show
-        @article = Article.find(params[:id])
         @comments = @article.comments
     end
 
@@ -23,11 +26,9 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
     end
 
     def update
-        @article = Article.find(params[:id])
         if @article.update(article_params)
             redirect_to article_path(@article)
         else
@@ -36,14 +37,22 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
         @article.destroy
         redirect_to articles_path
     end
 
+    def correct_user
+        @article = current_user.articles.find_by(id: params[:id])
+        redirect_to articles_path, notice: "Not Authorized To Edit This Article" if @article.nil?
+    end
+
     private
+    def set_article
+        @article = Article.find(params[:id])
+    end
+
     def article_params
-        params.require(:article).permit(:name, :body)
+        params.require(:article).permit(:name, :body, :user_id)
     end
 
 end
