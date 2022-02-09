@@ -46,6 +46,10 @@ class ArticlesController < ApplicationController
         redirect_to articles_path, notice: "Not Authorized To Edit This Article" if @article.nil?
     end
 
+    def my_articles
+        @articles = Article.where(user_id: params[:id])
+    end
+
     private
     def set_article
         @article = Article.find(params[:id])
