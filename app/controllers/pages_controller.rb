@@ -5,6 +5,6 @@ class PagesController < ApplicationController
     end
 
     def profile
-
+        @articles = Article.where(user_id: params[:id])
     end
 end

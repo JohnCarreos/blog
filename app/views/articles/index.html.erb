@@ -1,7 +1,8 @@
+<h1 class="text-center">All Articles</h1>
+
 <%= render 'articles_table' %>
-<%= link_to 'New Article', new_article_path if current_user%>
-<%= link_to 'Profile', profile_page_path(current_user) if current_user%>
-<%= link_to "Logout", destroy_user_session_path, method: :delete if current_user %>
+<a class="btn btn-primary btn-lg mb-5 ml-5" href='<%= new_article_path %>' role="button">New Article</a>
+
 
 
 

@@ -1,22 +1,12 @@
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Body</th>
-            <th>user</th>
-        <tr>
-    </thead>
+<% @articles.each do |article|%>
+    <div class="card m-5" >
+        <div class="card-body">
+            <h5 class="card-title"><%= link_to article.name, article_path(article) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= article.user.name %> <%= article.user.surname  %></h6>
+            <p class="card-text"><%= article.body %> </p>
+            <a href="#" class="card-link"><%= link_to 'Edit', edit_article_path(article) if article.user == current_user %></a>
+            <a href="#" class="card-link"><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} if article.user == current_user  %></a>
+        </div>
+    </div>
+<% end %>
 
-    <tbody>
-        <% @articles.each do |article|%>
-        <tr>
-            <td><%= link_to article.name, article_path(article) %></td>
-            <td><%= article.body %> <%= article.id %></td>
-            <td><%= article.user.inspect %></td>
-            <td><%= link_to 'Edit', edit_article_path(article) if article.user == current_user %> </td>
-            <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} if article.user == current_user  %></td>
-
-        <tr>
-        <% end %>
-    <tbody>
-</table>
