@@ -16,8 +16,10 @@
       </li>
       
     </ul>
+
+    <div class="ml-auto" ><%= current_user.email if current_user %></div>
     <%= link_to "Login", new_user_session_path, class: "ml-auto" if current_user.nil?%>
-    <%= link_to "Logout", destroy_user_session_path, class: "ml-auto", method: :delete if current_user %>
+    <%= link_to "Logout", destroy_user_session_path, class: "ml-3", method: :delete if current_user %>
   </div>
 
 </nav>

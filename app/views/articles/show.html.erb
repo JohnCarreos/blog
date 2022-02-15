@@ -1,16 +1,16 @@
-<h1>Showing selected article</h1>
 
-<p>
-    Title: <%= @article.name %>
+<h1 class="text-center m-5">
+    <%= @article.name %>
+</h1>
+
+<p class="text-center">
+    <%= @article.body %>
 </p>
 
-<p>
-    Description: <%= @article.body %>
-</p>
 
-<%= link_to "Edit this article", edit_article_path(@article) if current_user%> 
-<br>
-<%= link_to "Back to articles listing", articles_path if current_user %>
+<%# <button type="button" class="btn btn-warning">Warning</button> %>
+<div class="col text-center">
+    <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-warning ml-auto" if current_user %> 
+</div>
 
-<br>
 <%= render 'comments/index', comments: @comments %>
