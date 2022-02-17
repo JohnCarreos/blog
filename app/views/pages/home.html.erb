@@ -3,7 +3,9 @@
   <h1 class="display-4">Avion Blog App</h1>
   <p class="lead">A Ruby on Rails blog app that allows users to add articles for other users to read.</p>
   <hr class="my-4">
-  <p class="lead">
-    	<a class="btn btn-primary btn-lg" href='<%= new_user_registration_path %>' role="button">Sign Up</a>
-  </p>
+  <% if current_user.nil? %>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href='<%= new_user_registration_path %>' role="button">Sign Up</a>
+    </p>
+  <% end %>
 </div>
