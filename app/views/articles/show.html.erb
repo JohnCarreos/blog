@@ -8,9 +8,8 @@
 </p>
 
 
-<%# <button type="button" class="btn btn-warning">Warning</button> %>
 <div class="col text-center">
-    <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-warning ml-auto" if current_user %> 
+    <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-warning ml-auto" if current_user.id == @article.user.id %> 
 </div>
 
 <%= render 'comments/index', comments: @comments %>

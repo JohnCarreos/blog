@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
     before_action :authenticate_user!
     before_action :get_article
+    before_action :correct_user, only: %i[ edit update destroy ]
 
     def index
         @comments = @article.comments
@@ -24,11 +25,9 @@ class CommentsController < ApplicationController
     end
 
     def edit
-        @comment = Comment.find(params[:id])
     end
 
     def update
-        @comment = Comment.find(params[:id])
         if @comment.update(comment_params)
             redirect_to article_comment_path(@article.id, @comment.id)
         else
@@ -37,10 +36,14 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id])
         @comment.destroy
         # redirect_to @article
         redirect_to article_path(@article.id)
+    end
+
+    def correct_user
+        @comment = current_user.comments.find_by(id: params[:id]) 
+        redirect_to articles_path, notice: "Not Authorized To Edit This Comment" if @comment.nil?
     end
 
     private
