@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     def create
         @comment = @article.comments.build(comment_params)
         if @comment.save
-            redirect_to article_comment_path(@article.id, @comment.id)
+            redirect_to article_path(@article.id)
         else
             render :new
         end

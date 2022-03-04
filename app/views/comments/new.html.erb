@@ -10,16 +10,16 @@
     <% end %>
 </p>
 
-<p>
-    <%= f.label :body %><br/>
-    <%= f.text_field :body %>
-</p>
+<div class="field form-group">
+    <%= f.label :comment %><br/>
+    <%= f.text_field :body, class: "form-control" %>
+</div>
 
   <div class="field form-group">
     <%= f.number_field :user_id, id: :comment_user_id, class: "form-control", value: current_user.id, type: :hidden %>
   </div>
 <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success" %>
 </p>
 
 <% end %>
